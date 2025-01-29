@@ -10,7 +10,9 @@
             "request": "launch",
             "script": "${file}",
             "args": [],
-            "askParameters": true
+            "askParameters": true,
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceFolder}"
         },
         {
             "type": "rdbg",
