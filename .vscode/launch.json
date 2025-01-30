@@ -5,19 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "rdbg",
-            "name": "Debug current file with rdbg",
+            "type": "chrome",
             "request": "launch",
-            "script": "${file}",
-            "args": [],
-            "askParameters": true,
+            "name": "localhost に対して Chrome を起動する",
             "url": "http://localhost:3000",
             "webRoot": "${workspaceFolder}"
-        },
-        {
-            "type": "rdbg",
-            "name": "Attach with rdbg",
-            "request": "attach"
         }
     ]
 }
