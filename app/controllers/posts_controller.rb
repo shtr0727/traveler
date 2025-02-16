@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  
+
   def new
     @post = Post.new
   end
@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   def create
     post = Post.new(post_params)
     post.save
-    redirect_to '/top'
+    redirect_to post_path(post.id)
   end
 
   def index
