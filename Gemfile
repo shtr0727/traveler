@@ -73,3 +73,8 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 
 gem 'ffi'
+
+gem 'bootstrap', '~> 5.3.0'
+gem 'jquery-rails'
+
+gem "sassc-rails"
