@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   # get 'posts/new' コメントアウトしresourcesへ集約
   # post 'posts' => 'posts#create' コメントアウトしresourcesへ集約
   resources :posts
