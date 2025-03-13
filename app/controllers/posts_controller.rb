@@ -11,7 +11,8 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    # @posts = Post.all 削除
+    @posts = Post.page(params[:page]).reverse_order
   end
 
   def show
