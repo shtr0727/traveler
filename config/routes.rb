@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+  
   devise_for :users
-  # get 'posts/new' コメントアウトしresourcesへ集約
-  # post 'posts' => 'posts#create' コメントアウトしresourcesへ集約
+  resources :users, only:[:index, :show]
+
   resources :posts do
     resources :comments, only:[:create, :destroy]
     resource :favorites, only:[:create, :destroy]
@@ -14,7 +15,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  # get 'top' => 'homes#top' コメントアウトし次行へ修正
+
   root :to => 'homes#top'
 end
  
