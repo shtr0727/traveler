@@ -4,7 +4,7 @@
       <h1 class="font-weight-nomal">フォロワー一覧</h1>
     </div>
     <div class="row mt-5 w-50">
-      <% @users.each do |uesr| %>
+      <% @users.each do |user| %>
         <div class="one-post card mt-3">
           <%= link_to user_path(user) do %>
             <div class="d-flex">
