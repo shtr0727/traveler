@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_04_06_094853) do
+ActiveRecord::Schema[7.1].define(version: 2025_05_04_024615) do
   create_table "comments", force: :cascade do |t|
     t.text "comment"
     t.integer "user_id"
@@ -60,6 +60,17 @@ ActiveRecord::Schema[7.1].define(version: 2025_04_06_094853) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "view_counts", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_view_counts_on_post_id"
+    t.index ["user_id"], name: "index_view_counts_on_user_id"
+  end
+
   add_foreign_key "relationships", "users", column: "followed_id"
   add_foreign_key "relationships", "users", column: "follower_id"
+  add_foreign_key "view_counts", "posts"
+  add_foreign_key "view_counts", "users"
 end
