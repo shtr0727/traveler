@@ -54,6 +54,7 @@
 						</div>
 					</div>
 				<% end %>
+				<p>閲覧数:<%= @post.view_counts.count %></p>
 				<%= paginate @comments %>
 			</div>
 		</div>
