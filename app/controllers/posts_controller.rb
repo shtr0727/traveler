@@ -21,8 +21,11 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])#postを該当するidで取得
-    view_count = ViewCount.new(post_id: @post.id, user_id: current_user.id)
-    view_count.save
+      unless ViewCount.where(created_at: Time.zone.now.all_day).find_by(user_id: current_user.id, post_id: @post.id)
+        view_count = current_user.view_counts.new(post_id: @post.id)
+        view_count.save
+      end
+
     @comment = Comment.new
     @comments = @post.comments.page(params[:page]).per(7).reverse_order
   end
