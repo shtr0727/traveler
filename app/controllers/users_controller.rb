@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     # メッセージ相手になるユーザーEntriseテーブルから取得する。
     @another_entry = Entry.where(user_id: @user.id)
     # 相手が自分自身ではなく、相互フォローしている場合のみDM処理を許可。
-    if @user.id != current_user.id && current_user.mutual_follow?(@user)
+    unless @user.id == current_user.id # DM誰でも出来る状態になるかも（要検証）
       @current_entry.each do |current|
         @another_entry.each do |another|
           if current.room_id == another.room_id # each doで取り出されたcurrentとanotherが一致する場合は

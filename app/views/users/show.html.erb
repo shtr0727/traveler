@@ -7,6 +7,13 @@
         <h1 class="font=weight-normal"><%= @user.name %>さんのページ</h1>
       <% end %>
     </div>
+    
+    <% unless @user.id == current_user.id %>
+      <% if (current_user.followed_by? @user) && (@user.followed_by? current_user) %>
+      <% if @is_room == true %>
+        <p class="d-flex user-show-room">
+        <%= link_to "チャットを始める", 
+
     <% if user_signed_in? && @user == current_user %>
       <p class="d-flex align-self-end">
         <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-success" %>
