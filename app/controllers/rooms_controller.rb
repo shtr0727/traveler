@@ -10,12 +10,12 @@ class RoomsController < ApplicationController
   end
 
   def show
-    @room = Room.find(params[:id])
-    if @room.entries.where(user_id: current_user.id).exists?
+    @room = Room.find(params[:id]) # １つのルームを表示
+    if @room.entries.where(user_id: current_user.id).exists? # 自分が相手ユーザーと既にチャットルームにエントリーしているかを確認
       @messages = @room.messages.all
       @message = Message.new
       @entries = @room.entries
-      @another_entry = @entries.find_by.not(user_id: current_user.id).first
+      @another_entry = @entries.where.not(user_id: current_user.id).first # ルームに参加している２名のうち、相手ユーザーのエントリーを取得
     else
       redirect_back(fallback_location: root_path)
     end
