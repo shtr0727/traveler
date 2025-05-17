@@ -7,15 +7,15 @@
         <h1 class="font=weight-normal"><%= @user.name %>さんのページ</h1>
       <% end %>
     </div>
-    <%# 「自分でなく、かつ相互フォローしているかどうか」の判定 %>
+
     <% if @user.id != current_user.id && current_user.followed_by?(@user) && @user.followed_by?(current_user) %>
       <div class="d-flex user-show-dm">
         <% if @is_room == true %>
           <%= link_to "チャットへ", room_path(@room_id), class: "btn btn-primary" %>
         <% else %>
-          <%= form_with model: @room, local: true do |f| %><%# roomクラスに基づいたフォームを用意⇒コントローラーでインスタンスを作成し保存 %>
-            <%= fields_for @entry do |e| %><%# アソシエーションに基づき上記親フォームの中に子フォームを入れる %>
-              <%= e.hidden_field :user_id, value: @user.id %><%# dm相手は決まっていて選択不要のためユーザー非表示で値を送信する %>
+          <%= form_with model: @room, local: true do |f| %>
+            <%= fields_for @entry do |entry| %>
+              <%= entry.hidden_field :user_id, value: @user.id %>
             <% end %>
             <%= f.submit "チャットを始める", class: "btn btn-primary" %>
           <% end %>
