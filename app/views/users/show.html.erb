@@ -13,10 +13,8 @@
         <% if @is_room == true %>
           <%= link_to "チャットへ", room_path(@room_id), class: "btn btn-primary" %>
         <% else %>
-          <%= form_with model: @room, local: true do |f| %>
-            <%= fields_for @entry do |entry| %>
-              <%= entry.hidden_field :user_id, value: @user.id %>
-            <% end %>
+          <%= form_with url: rooms_path, local: true do |f| %>
+            <%= hidden_field_tag "entry[user_id]", @user.id %>
             <%= f.submit "チャットを始める", class: "btn btn-primary" %>
           <% end %>
         <% end %>

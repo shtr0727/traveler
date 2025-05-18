@@ -4,7 +4,7 @@ class RoomsController < ApplicationController
     # ルームのインスタンスを作成
     @room = Room.create
     # 作成したルーム（親要素）に紐づくエントリー（子要素）のインスタンスを作成（アソシエーションを活用）
-    @current_entry = @room.entries.create(room_id: current_user.id)
+    @current_entry = @room.entries.create(user_id: current_user.id)
     @another_entry = @room.entries.create(user_id: params[:entry][:user_id])
     redirect_to room_path(@room)
   end
