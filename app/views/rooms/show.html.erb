@@ -1,20 +1,25 @@
-<h2 class="mb-4">チャットルーム</h2>
+<h2 class="mb-4"><%= @another_entry.user.name %>とのトークルーム</h2>
 
-<div class="chat-box border p-3 mb-4" style="height: 400px; overflow-y: scroll;">
+<div class="chat-box mb-4">
   <% @messages.each do |message| %>
-    <div class="mb-2">
-      <% if message.user_id == current_user.id %>
-        <p class="text-right"><strong>あなた:</strong> <%= message.content %></p>
-      <% else %>
-        <p><strong><%= @another_entry.user.name %>:</strong> <%= message.content %></p>
-      <% end %>
-    </div>
+    <% if message.user_id == current_user.id %>
+      <div class="message-left">
+        <div class="bubble">
+          <%= message.content %>
+        </div>
+      </div>
+    <% else %>
+      <div class="message-right">
+        <div class="bubble">
+          <%= message.content %>
+        </div>
+      </div>
+    <% end %>
   <% end %>
 </div>
 
-<%= form_with(model: [@room, @message], local: true) do |f| %>
-  <div class="form-group">
-    <%= f.text_area :message, rows: 3, class: "form-control", placeholder: "メッセージを入力..." %>
-  </div>
-  <%= f.submit "送信", class: "btn btn-primary mt-2" %>
+<%= form_with(model: [@room, @message], local: true, html: { class: "chat-form" }) do |f| %>
+  <%= f.hidden_field :room_id, value: @room.id %>
+  <%= f.text_area :content, rows: 1, placeholder: "メッセージを入力して下さい" %>
+  <%= f.submit "送信する", class: "btn btn-dark" %>
 <% end %>
