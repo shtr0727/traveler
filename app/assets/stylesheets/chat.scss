@@ -1,6 +1,17 @@
+.chat-title {
+  margin-top: 1rem;           // 上から1行分の余白
+  text-align: center;         // 中央揃え
+}
+
+.chat-title .username {
+  color: blue;                // 青文字
+  font-weight: bold;          // お好みで太字
+}
+
 .chat-box {
-  height: 200px;
-  width: 70%;
+  height: 300px;
+  width: 80%;
+  margin: auto;
   overflow-y: scroll;
   background-color: white;
   padding: 1rem;
@@ -34,8 +45,14 @@
 }
 
 .chat-form {
+  position: fixed;
+  bottom: 1rem;        // 画面下から1remの余白
+  left: 50%;
+  transform: translateX(-50%);  // 中央揃え
+  width: 80%;          // 幅を調整（お好みで）
   display: flex;
-  margin-top: 1rem;
+  background-color: white; // 背景色（必要なら）
+  padding: 0.5rem;     // 内側の余白
 
   textarea {
     flex-grow: 1;

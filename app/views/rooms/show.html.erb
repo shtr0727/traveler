@@ -1,4 +1,6 @@
-<h2 class="mb-4"><%= @another_entry.user.name %>とのトークルーム</h2>
+<h2 class="chat-title mb-4">
+  <span class="username"><%= @another_entry.user.name %></span>とのトークルーム
+</h2>
 
 <div class="chat-box mb-4">
   <% @messages.each do |message| %>
