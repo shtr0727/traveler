@@ -1,5 +1,14 @@
+.cover-chat-show {
+  height: 100%;
+  width: 100%;
+  background-image: url(/assets/mypage-scaled.jpg);
+  background-color: rgba(255, 255, 255, 0.4);
+  background-blend-mode: lighten;
+  background-size: 100% 100%;
+}
+
 .chat-title {
-  margin-top: 1rem;           // 上から1行分の余白
+  padding-top: 2rem;
   text-align: center;         // 中央揃え
 }
 
@@ -51,13 +60,16 @@
   transform: translateX(-50%);  // 中央揃え
   width: 80%;          // 幅を調整（お好みで）
   display: flex;
-  background-color: white; // 背景色（必要なら）
-  padding: 0.5rem;     // 内側の余白
+  padding: 0.5rem;  // 内側の余白
 
   textarea {
     flex-grow: 1;
-    resize: none;
-    margin-right: 0.5rem;
+  resize: none;
+  margin-right: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  line-height: 1.5;
+  font-size: 1rem; /* 任意。line-heightとのバランス調整 */
   }
 
   input[type="submit"] {

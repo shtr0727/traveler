@@ -1,27 +1,29 @@
-<h2 class="chat-title mb-4">
-  <span class="username"><%= @another_entry.user.name %></span>とのトークルーム
-</h2>
+<div class="cover-chat-show">
+  <h2 class="chat-title mb-4">
+    <span class="username"><%= @another_entry.user.name %></span>とのトークルーム
+  </h2>
 
-<div class="chat-box mb-4">
-  <% @messages.each do |message| %>
-    <% if message.user_id == current_user.id %>
-      <div class="message-left">
-        <div class="bubble">
-          <%= message.content %>
+  <div class="chat-box mb-4">
+    <% @messages.each do |message| %>
+      <% if message.user_id == current_user.id %>
+        <div class="message-left">
+          <div class="bubble">
+            <%= message.content %>
+          </div>
         </div>
-      </div>
-    <% else %>
-      <div class="message-right">
-        <div class="bubble">
-          <%= message.content %>
+      <% else %>
+        <div class="message-right">
+          <div class="bubble">
+            <%= message.content %>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
+  </div>
+
+  <%= form_with(model: [@room, @message], local: true, html: { class: "chat-form" }) do |f| %>
+    <%= f.hidden_field :room_id, value: @room.id %>
+    <%= f.text_area :content, rows: 1, placeholder: "メッセージを入力して下さい" %>
+    <%= f.submit "送信する", class: "btn btn-success" %>
   <% end %>
 </div>
-
-<%= form_with(model: [@room, @message], local: true, html: { class: "chat-form" }) do |f| %>
-  <%= f.hidden_field :room_id, value: @room.id %>
-  <%= f.text_area :content, rows: 1, placeholder: "メッセージを入力して下さい" %>
-  <%= f.submit "送信する", class: "btn btn-dark" %>
-<% end %>
