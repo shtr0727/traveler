@@ -8,10 +8,10 @@ Rails.application.routes.draw do
     resource :relationships, only: [:create, :destroy]
   end
 
-  resources :posts do
-    resources :comments, only:[:create, :destroy]
-    resource :favorites, only:[:create, :destroy]
-    collection do
+  resources :posts do # postsの標準的な7つのRESTfulルート（index, show, new, create, edit, update, destroy）を生成
+    resources :comments, only:[:create, :destroy] # postに紐づくリソースをネストして定義
+    resource :favorites, only:[:create, :destroy] # 単数形のため1:1関係
+    collection do # posts全体に対するアクション（個別のpostには関係しない）でconfirmアクションを追加
       get 'confirm'
     end
   end
