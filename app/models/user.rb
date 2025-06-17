@@ -19,6 +19,22 @@ class User < ApplicationRecord
 
   validates :name, presence: true
 
+  GUEST_EMAIL = "guest@example.com".freeze
+
+  # クラスメソッド：既定のゲストを取得／作成して返す
+  def self.guest
+    find_or_create_by!(email: GUEST_EMAIL) do |u|
+      u.password = SecureRandom.urlsafe_base64(12)
+      u.name = "ゲスト"
+      u.profile_image = nil
+    end
+  end
+
+  # インスタンスメソッド：ゲストかどうか判定
+  def guest?
+    email == GUEST_EMAIL
+  end
+
   #ユーザーをフォローする
   def follow(user_id)
     follower.create(followed_id: user_id)
